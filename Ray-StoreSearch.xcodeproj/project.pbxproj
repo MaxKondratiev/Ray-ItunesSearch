@@ -13,6 +13,7 @@
 		127745BE267724A0006F1816 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127745BC267724A0006F1816 /* Main.storyboard */; };
 		127745C0267724A2006F1816 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127745BF267724A2006F1816 /* Assets.xcassets */; };
 		127745C3267724A2006F1816 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127745C1267724A2006F1816 /* LaunchScreen.storyboard */; };
+		127745D2267781B4006F1816 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745D1267781B4006F1816 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		127745BF267724A2006F1816 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		127745C2267724A2006F1816 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127745C4267724A2006F1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		127745D1267781B4006F1816 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				127745B8267724A0006F1816 /* SceneDelegate.swift */,
 				127745BA267724A0006F1816 /* SearchViewController.swift */,
 				127745BC267724A0006F1816 /* Main.storyboard */,
+				127745D1267781B4006F1816 /* SearchResult.swift */,
 				127745BF267724A2006F1816 /* Assets.xcassets */,
 				127745C1267724A2006F1816 /* LaunchScreen.storyboard */,
 				127745C4267724A2006F1816 /* Info.plist */,
@@ -139,6 +142,7 @@
 			files = (
 				127745BB267724A0006F1816 /* SearchViewController.swift in Sources */,
 				127745B7267724A0006F1816 /* AppDelegate.swift in Sources */,
+				127745D2267781B4006F1816 /* SearchResult.swift in Sources */,
 				127745B9267724A0006F1816 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
