@@ -10,20 +10,17 @@ import Foundation
 
 class SearchViewController: UIViewController {
     
+//Mark* - Outlers
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+ // VARIABLES
+    var searchResults = [SearchResult]()
     struct TableView {
         struct CellIdentifiers {
             static let searchResultCell = "SearchResultCell"
         }
     }
-    
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    
-    
-    var searchResults = [SearchResult]()
-    
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,24 +28,52 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+ //MARK* - Register Xib Cell
+        
         let nibCell = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: .main)
         tableView.register(nibCell, forCellReuseIdentifier: "xibCell")
-        
     }
-
-
 }
 
+
+//NETWORKING
+func itunesURL (searchText: String) -> URL {
+    let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    
+    
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@",encodedText.localizedLowercase)
+    
+    let url = URL(string: urlString)
+    
+    return url!
+}
+
+func performStoreRequest(with url: URL) -> String? {
+    do {
+        return try String(contentsOf: url, encoding: .utf8)
+    } catch {
+        print("Download Error is \(error.localizedDescription)")
+         return nil   }
+    
+}
+
+
+//MARK* - SEARCH BAR
 extension SearchViewController: UISearchBarDelegate  {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        for i in 0...15 {
-            let ekzOfSearchResult = SearchResult()
-            ekzOfSearchResult.name = String(format: "Fake results %d for ", i)
-            ekzOfSearchResult.artistName = searchBar.text!
-            searchResults.append(ekzOfSearchResult)
+        if !searchBar.text!.isEmpty {
+            resignFirstResponder()
+            
+            let url = itunesURL(searchText: searchBar.text!)
+           
+            if let jsonString = performStoreRequest(with: url) {
+                print("Our Json is \(jsonString)")
+            }
+            
+            
+           tableView.reloadData()
         }
-        tableView.reloadData()
+       
         
 }
     
@@ -56,7 +81,7 @@ extension SearchViewController: UISearchBarDelegate  {
         .topAttached
     }
 }
-
+//MARK* - Delegates/DataSourse
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
