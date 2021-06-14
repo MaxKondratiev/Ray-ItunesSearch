@@ -48,15 +48,32 @@ func itunesURL (searchText: String) -> URL {
     return url!
 }
 
-func performStoreRequest(with url: URL) -> String? {
+func performStoreRequest(with url: URL) -> Data? {
     do {
-        return try String(contentsOf: url, encoding: .utf8)
+        return try Data(contentsOf: url)
     } catch {
-        print("Download Error is \(error.localizedDescription)")
-         return nil   }
+        print("\n --- Download Error is \(error.localizedDescription)")
+        showNetworkError()}
+         return nil
     
 }
 
+func parseData(_ data: Data) -> [SearchResult] {
+    do {
+        let resultofSearch = try JSONDecoder().decode(ResultArray.self, from: data)
+        return resultofSearch.results
+    } catch {
+        print("Error is \(error)")
+         return []
+    }
+}
+func showNetworkError() {
+    let alert = UIAlertController(title: "Ooops", message: "There was an error accessing the iTunes Store.", preferredStyle: .alert)
+    let  action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+    alert.addAction(action)
+    alert.present(alert, animated: true, completion: nil)
+    
+}
 
 //MARK* - SEARCH BAR
 extension SearchViewController: UISearchBarDelegate  {
@@ -66,15 +83,15 @@ extension SearchViewController: UISearchBarDelegate  {
             
             let url = itunesURL(searchText: searchBar.text!)
            
-            if let jsonString = performStoreRequest(with: url) {
-                print("Our Json is \(jsonString)")
+            if let data = performStoreRequest(with: url) {
+              //Вместо этого мы подставили наш экземпляр класса и ячейки заполнились данными
+//                let results = parseData(data)
+//                print("Our RESULTS are: \(results)")
+                
+                searchResults = parseData(data)
             }
-            
-            
            tableView.reloadData()
         }
-       
-        
 }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
