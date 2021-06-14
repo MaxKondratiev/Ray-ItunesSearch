@@ -53,7 +53,9 @@ func performStoreRequest(with url: URL) -> Data? {
         return try Data(contentsOf: url)
     } catch {
         print("\n --- Download Error is \(error.localizedDescription)")
-        showNetworkError()}
+        showNetworkError()
+        
+    }
          return nil
     
 }
@@ -89,6 +91,10 @@ extension SearchViewController: UISearchBarDelegate  {
 //                print("Our RESULTS are: \(results)")
                 
                 searchResults = parseData(data)
+                //по алфавиту
+                searchResults.sort { (result1, result2) -> Bool in
+                    return result1.artist.localizedStandardCompare(result2.artist) == .orderedAscending
+                }
             }
            tableView.reloadData()
         }
@@ -107,9 +113,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell" , for: indexPath) as! SearchResultCell
         
-        let ekzOfsearchResult = searchResults[indexPath.row]
-        cell.nameLabel.text =  ekzOfsearchResult.name
-        cell.artistNameLabel?.text = ekzOfsearchResult.artistName
+        let result = searchResults[indexPath.row]
+        cell.nameLabel.text =  result.name
+        if result.artist.isEmpty {
+            cell.artistNameLabel.text = "Unknow"
+        } else {
+            cell.artistNameLabel.text = String(format: "%@ (%@)", result.artist, result.type)
+            
+        }
         
         return cell
     }
