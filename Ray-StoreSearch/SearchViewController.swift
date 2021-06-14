@@ -6,20 +6,33 @@
 //
 
 import UIKit
+import Foundation
 
 class SearchViewController: UIViewController {
+    
+    struct TableView {
+        struct CellIdentifiers {
+            static let searchResultCell = "SearchResultCell"
+        }
+    }
+    
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     
     var searchResults = [SearchResult]()
     
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let nibCell = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: .main)
+        tableView.register(nibCell, forCellReuseIdentifier: "xibCell")
         
     }
 
@@ -50,10 +63,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell" , for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell" , for: indexPath) as! SearchResultCell
+        
         let ekzOfsearchResult = searchResults[indexPath.row]
-        cell.textLabel?.text =  ekzOfsearchResult.name
-        cell.detailTextLabel?.text = ekzOfsearchResult.artistName
+        cell.nameLabel.text =  ekzOfsearchResult.name
+        cell.artistNameLabel?.text = ekzOfsearchResult.artistName
         
         return cell
     }

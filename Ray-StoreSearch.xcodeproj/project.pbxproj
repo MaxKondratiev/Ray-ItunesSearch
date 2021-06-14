@@ -14,6 +14,8 @@
 		127745C0267724A2006F1816 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127745BF267724A2006F1816 /* Assets.xcassets */; };
 		127745C3267724A2006F1816 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127745C1267724A2006F1816 /* LaunchScreen.storyboard */; };
 		127745D2267781B4006F1816 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745D1267781B4006F1816 /* SearchResult.swift */; };
+		127745D526778923006F1816 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127745D426778923006F1816 /* SearchResultCell.xib */; };
+		127745D826779800006F1816 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745D726779800006F1816 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		127745C2267724A2006F1816 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127745C4267724A2006F1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		127745D1267781B4006F1816 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		127745D426778923006F1816 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		127745D726779800006F1816 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				127745B8267724A0006F1816 /* SceneDelegate.swift */,
 				127745BA267724A0006F1816 /* SearchViewController.swift */,
 				127745BC267724A0006F1816 /* Main.storyboard */,
+				127745D426778923006F1816 /* SearchResultCell.xib */,
+				127745D726779800006F1816 /* SearchResultCell.swift */,
 				127745D1267781B4006F1816 /* SearchResult.swift */,
 				127745BF267724A2006F1816 /* Assets.xcassets */,
 				127745C1267724A2006F1816 /* LaunchScreen.storyboard */,
@@ -129,6 +135,7 @@
 			files = (
 				127745C3267724A2006F1816 /* LaunchScreen.storyboard in Resources */,
 				127745C0267724A2006F1816 /* Assets.xcassets in Resources */,
+				127745D526778923006F1816 /* SearchResultCell.xib in Resources */,
 				127745BE267724A0006F1816 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +151,7 @@
 				127745B7267724A0006F1816 /* AppDelegate.swift in Sources */,
 				127745D2267781B4006F1816 /* SearchResult.swift in Sources */,
 				127745B9267724A0006F1816 /* SceneDelegate.swift in Sources */,
+				127745D826779800006F1816 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
