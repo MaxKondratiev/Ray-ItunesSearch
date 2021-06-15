@@ -23,7 +23,9 @@ class SearchViewController: UIViewController {
     
     // VARIABLES
     var dataTask : URLSessionDataTask?
+    
     var searchResults = [SearchResult]()
+    
     struct TableView {
         struct CellIdentifiers {
             static let searchResultCell = "SearchResultCell"
@@ -42,6 +44,16 @@ class SearchViewController: UIViewController {
         tableView.register(nibCell, forCellReuseIdentifier: "xibCell")
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+        let detailVC = segue.destination as! DetailViewController
+        let indexPath = sender as! IndexPath
+        let searchResult = searchResults[indexPath.row]
+        detailVC.searchResult = searchResult
+    }
+    }
+    //Когда DidelectRowat запускает Segue, он отправляет вдоль пути индекса выбранной строки. Что позволяет вам найти объект SearchResult и передавать его на DetailViewController 
+    //
 }
 
 
@@ -64,9 +76,6 @@ func itunesURL (searchText: String, category: Int) -> URL {
     
     return url!
 }
-
-
-
 func parseData(_ data: Data) -> [SearchResult] {
     do {
         let resultofSearch = try JSONDecoder().decode(ResultArray.self, from: data)
@@ -128,6 +137,7 @@ extension SearchViewController: UISearchBarDelegate  {
 
 
 //MARK* - Delegates/DataSourse
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
@@ -141,7 +151,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
         }
         
-     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+    }
+    
     }
     
     

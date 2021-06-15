@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1205E9722678B76E006D46D6 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205E9712678B76E006D46D6 /* UIImageView+DownloadImage.swift */; };
+		1205E9752678D128006D46D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205E9742678D128006D46D6 /* DetailViewController.swift */; };
 		127745B7267724A0006F1816 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745B6267724A0006F1816 /* AppDelegate.swift */; };
 		127745B9267724A0006F1816 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745B8267724A0006F1816 /* SceneDelegate.swift */; };
 		127745BB267724A0006F1816 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745BA267724A0006F1816 /* SearchViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1205E9712678B76E006D46D6 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		1205E9742678D128006D46D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		127745B3267724A0006F1816 /* Ray-StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ray-StoreSearch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		127745B6267724A0006F1816 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		127745B8267724A0006F1816 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				127745BA267724A0006F1816 /* SearchViewController.swift */,
 				127745D1267781B4006F1816 /* SearchResult.swift */,
 				1205E9712678B76E006D46D6 /* UIImageView+DownloadImage.swift */,
+				1205E9742678D128006D46D6 /* DetailViewController.swift */,
 				127745BC267724A0006F1816 /* Main.storyboard */,
 				127745D426778923006F1816 /* SearchResultCell.xib */,
 				127745D726779800006F1816 /* SearchResultCell.swift */,
@@ -152,6 +155,7 @@
 				127745D2267781B4006F1816 /* SearchResult.swift in Sources */,
 				127745B9267724A0006F1816 /* SceneDelegate.swift in Sources */,
 				127745D826779800006F1816 /* SearchResultCell.swift in Sources */,
+				1205E9752678D128006D46D6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
