@@ -125,6 +125,8 @@ extension SearchViewController: UISearchBarDelegate  {
         .topAttached
     }
 }
+
+
 //MARK* - Delegates/DataSourse
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,16 +137,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell" , for: indexPath) as! SearchResultCell
         
         let result = searchResults[indexPath.row]
-        cell.nameLabel.text =  result.name
-        if result.artist.isEmpty {
-            cell.artistNameLabel.text = "Unknow"
-        } else {
-            cell.artistNameLabel.text = String(format: "%@ (%@)", result.artist, result.type)
-            
+        cell.configureCell(for: result)
+        return cell
         }
         
-        return cell
+     
     }
     
     
-}
+
