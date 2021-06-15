@@ -41,7 +41,7 @@ func itunesURL (searchText: String) -> URL {
     let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     
     
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@",encodedText.localizedLowercase)
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200",encodedText.localizedLowercase)
     
     let url = URL(string: urlString)
     
@@ -84,19 +84,22 @@ extension SearchViewController: UISearchBarDelegate  {
             resignFirstResponder()
             
             let url = itunesURL(searchText: searchBar.text!)
-           
-            if let data = performStoreRequest(with: url) {
-              //Вместо этого мы подставили наш экземпляр класса и ячейки заполнились данными
-//                let results = parseData(data)
-//                print("Our RESULTS are: \(results)")
-                
-                searchResults = parseData(data)
-                //по алфавиту
-                searchResults.sort { (result1, result2) -> Bool in
-                    return result1.artist.localizedStandardCompare(result2.artist) == .orderedAscending
+            DispatchQueue.global().async {
+                if let data = performStoreRequest(with: url) {
+                  //Вместо этого мы подставили наш экземпляр класса и ячейки заполнились данными
+    //                let results = parseData(data)
+    //                print("Our RESULTS are: \(results)")
+                    
+                    self.searchResults = parseData(data)
+                    //по алфавиту
+                    self.searchResults.sort { (result1, result2) -> Bool in
+                        return result1.artist.localizedStandardCompare(result2.artist) == .orderedAscending
+                    }
                 }
             }
-           tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
 }
     
