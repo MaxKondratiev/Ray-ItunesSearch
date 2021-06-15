@@ -10,11 +10,19 @@ import Foundation
 
 class SearchViewController: UIViewController {
     
-//Mark* - Outlers
+    //Mark* - Outlers
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
- // VARIABLES
+    @IBOutlet weak var segmentContol: UISegmentedControl!
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        print(segmentContol.selectedSegmentIndex)
+    }
+    
+    
+    // VARIABLES
+    var dataTask : URLSessionDataTask?
     var searchResults = [SearchResult]()
     struct TableView {
         struct CellIdentifiers {
@@ -28,10 +36,11 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
- //MARK* - Register Xib Cell
+        //MARK* - Register Xib Cell
         
         let nibCell = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: .main)
         tableView.register(nibCell, forCellReuseIdentifier: "xibCell")
+        
     }
 }
 
@@ -48,25 +57,16 @@ func itunesURL (searchText: String) -> URL {
     return url!
 }
 
-func performStoreRequest(with url: URL) -> Data? {
-    do {
-        return try Data(contentsOf: url)
-    } catch {
-        print("\n --- Download Error is \(error.localizedDescription)")
-        showNetworkError()
-        
-    }
-         return nil
-    
-}
+
 
 func parseData(_ data: Data) -> [SearchResult] {
     do {
         let resultofSearch = try JSONDecoder().decode(ResultArray.self, from: data)
         return resultofSearch.results
     } catch {
-        print("Error is \(error)")
-         return []
+        print("\n -----Error is \(error)")
+        
+        return []
     }
 }
 func showNetworkError() {
@@ -84,24 +84,26 @@ extension SearchViewController: UISearchBarDelegate  {
             resignFirstResponder()
             
             let url = itunesURL(searchText: searchBar.text!)
-            DispatchQueue.global().async {
-                if let data = performStoreRequest(with: url) {
-                  //Вместо этого мы подставили наш экземпляр класса и ячейки заполнились данными
-    //                let results = parseData(data)
-    //                print("Our RESULTS are: \(results)")
-                    
-                    self.searchResults = parseData(data)
-                    //по алфавиту
-                    self.searchResults.sort { (result1, result2) -> Bool in
-                        return result1.artist.localizedStandardCompare(result2.artist) == .orderedAscending
-                    }
+            dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print(error.localizedDescription)
                 }
+                else if let httpResponse = response as? HTTPURLResponse,   httpResponse.statusCode == 200 {
+                    if let data = data {
+                        self.searchResults = parseData(data)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                     }
+                
             }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            dataTask?.resume()
+            
+
+            
         }
-}
+    }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         .topAttached
