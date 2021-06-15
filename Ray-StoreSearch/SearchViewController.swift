@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var segmentContol: UISegmentedControl!
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        print(segmentContol.selectedSegmentIndex)
+       performSearch()
     }
     
     
@@ -46,11 +46,19 @@ class SearchViewController: UIViewController {
 
 
 //NETWORKING
-func itunesURL (searchText: String) -> URL {
+func itunesURL (searchText: String, category: Int) -> URL {
+  
+    let kind : String
+    switch category {
+    case 1: kind = "musicTrack"
+    case 2: kind = "software"
+    case 3: kind = "ebook"
+    default: kind = ""
+    }
+    
+    
     let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-    
-    
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200",encodedText.localizedLowercase)
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=\(kind)",encodedText.localizedLowercase)
     
     let url = URL(string: urlString)
     
@@ -79,11 +87,15 @@ func showNetworkError() {
 
 //MARK* - SEARCH BAR
 extension SearchViewController: UISearchBarDelegate  {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             resignFirstResponder()
             
-            let url = itunesURL(searchText: searchBar.text!)
+            let url = itunesURL(
+                searchText: searchBar.text!,
+                category: segmentContol.selectedSegmentIndex
+                )
+                
             dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -103,6 +115,10 @@ extension SearchViewController: UISearchBarDelegate  {
 
             
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {

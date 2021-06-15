@@ -12,7 +12,6 @@
 		127745BB267724A0006F1816 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745BA267724A0006F1816 /* SearchViewController.swift */; };
 		127745BE267724A0006F1816 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127745BC267724A0006F1816 /* Main.storyboard */; };
 		127745C0267724A2006F1816 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127745BF267724A2006F1816 /* Assets.xcassets */; };
-		127745C3267724A2006F1816 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127745C1267724A2006F1816 /* LaunchScreen.storyboard */; };
 		127745D2267781B4006F1816 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745D1267781B4006F1816 /* SearchResult.swift */; };
 		127745D526778923006F1816 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127745D426778923006F1816 /* SearchResultCell.xib */; };
 		127745D826779800006F1816 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127745D726779800006F1816 /* SearchResultCell.swift */; };
@@ -25,7 +24,6 @@
 		127745BA267724A0006F1816 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		127745BD267724A0006F1816 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		127745BF267724A2006F1816 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		127745C2267724A2006F1816 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127745C4267724A2006F1816 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		127745D1267781B4006F1816 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		127745D426778923006F1816 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 				127745D426778923006F1816 /* SearchResultCell.xib */,
 				127745D726779800006F1816 /* SearchResultCell.swift */,
 				127745BF267724A2006F1816 /* Assets.xcassets */,
-				127745C1267724A2006F1816 /* LaunchScreen.storyboard */,
 				127745C4267724A2006F1816 /* Info.plist */,
 			);
 			path = "Ray-StoreSearch";
@@ -133,7 +130,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				127745C3267724A2006F1816 /* LaunchScreen.storyboard in Resources */,
 				127745C0267724A2006F1816 /* Assets.xcassets in Resources */,
 				127745D526778923006F1816 /* SearchResultCell.xib in Resources */,
 				127745BE267724A0006F1816 /* Main.storyboard in Resources */,
@@ -164,14 +160,6 @@
 				127745BD267724A0006F1816 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		127745C1267724A2006F1816 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				127745C2267724A2006F1816 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
